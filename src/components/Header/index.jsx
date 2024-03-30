@@ -1,13 +1,17 @@
 import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { GoSearch } from 'react-icons/go';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { MdMic } from 'react-icons/md';
+import { toggleVoiceModalDisplay } from '../../store/slices/appSlice';
 import youtubeLogo from '../../assets/logo.png';
 
 const Header = () => {
   const searchRef = useRef(null);
+  const dispatch = useDispatch();
+
   const handleSearch = () => {
     console.log(searchRef.current?.value);
   };
@@ -32,7 +36,10 @@ const Header = () => {
         >
           <GoSearch size='20px' />
         </button>
-        <div className='flex items-center bg-slate-100 hover:bg-slate-200 rounded-3xl px-2.5 ml-3 cursor-pointer'>
+        <div
+          className='flex items-center bg-slate-100 hover:bg-slate-200 rounded-3xl px-2.5 ml-3 cursor-pointer'
+          onClick={() => dispatch(toggleVoiceModalDisplay())}
+        >
           <MdMic size='24px' />
         </div>
       </div>
