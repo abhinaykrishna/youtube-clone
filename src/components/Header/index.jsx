@@ -5,7 +5,7 @@ import { GoSearch } from 'react-icons/go';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { MdMic } from 'react-icons/md';
-import { toggleVoiceModalDisplay } from '../../store/slices/appSlice';
+import { toggleSidebar, toggleVoiceModalDisplay } from '../../store/slices/appSlice';
 import youtubeLogo from '../../assets/logo.png';
 
 const Header = () => {
@@ -19,15 +19,18 @@ const Header = () => {
   return (
     <div className='p-4 flex items-center justify-between'>
       <div className='flex items-center gap-6'>
-        <RxHamburgerMenu size='21px' className='cursor-pointer' />
-        <img src={youtubeLogo} alt='youtube-logo' className='w-28' />
+        <RxHamburgerMenu
+          size='21px'
+          className='cursor-pointer ml-4'
+          onClick={() => dispatch(toggleSidebar())}
+        />
+        <img src={youtubeLogo} alt='youtube-logo' className='w-28 ml-4' />
       </div>
       <div className='flex w-3/5 justify-center'>
         <input
           type='text'
           placeholder='Search'
           className='px-5 py-2.5 text-md border rounded-tl-3xl rounded-bl-3xl text-sm w-1/2 text-gray-500'
-          autoFocus
           ref={searchRef}
         />
         <button

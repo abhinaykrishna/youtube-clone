@@ -27,7 +27,14 @@ const useSpeechRecognition = options => {
     };
 
     recognition.onerror = event => {
-      setError(`Speech recognition error: ${event.error}`);
+      console.log(event);
+      setError(
+        `Speech recognition error: ${
+          event.error === 'not-allowed'
+            ? 'To search by voice, go to your browser settings and allow access to microphone.'
+            : event.error
+        }`
+      );
     };
 
     recognition.onend = () => {
